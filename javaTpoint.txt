@@ -1,0 +1,612 @@
+CORE JAVA BASICS:
+
+==================================================================================================================
+
+#1: POLYMORPHISM:
+----------------------------------------------------------------------------------------------------------------
+1#A) Runtime Polymorphism
+
+- There are two types of polymorphism in Java: compile-time polymorphism and runtime polymorphism. We can perform polymorphism in java by method overloading and method overriding
+
+- If you OVERLOAD a method in Java, it is the example of compile time polymorphism. Here, we will focus on runtime polymorphism in java.
+
+- Method overriding is used for runtime polymorphism
+
+-If you are overriding any method, overridden method (i.e. declared in subclass) must not be more restrictive in access specifier.
+
+- Can we override a static method? No, we cannot override static methods because method overriding is based on dynamic binding at runtime and the static methods are bonded using static binding at compile time. So, we cannot override static method .it does not override, actually it is method hiding (https://www.javatpoint.com/can-we-override-static-method-in-java#:~:text=Can%20we%20override%20a%20static,we%20cannot%20override%20static%20methods.)
+
+-Can we overload a static method?
+The answer is Yes. We can overload static methods. But remember that the method signature must be different.
+
+- Runtime polymorphism or Dynamic Method Dispatch is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+In this process, an overridden method is called through the reference variable of a superclass. The determination of the method to be called is based on the object being referred to by the reference variable.
+
+- Try for output:(ONLY FOR STATIC METHORD OVERRIDING)
+
+public class OverloadStaticMethodExample3  
+{  
+public static void main(String args[])   
+{  
+ParentClass pc = new ChildClass();  
+//calling display() method by parent class
+pc.display();   
+}   
+}  
+//parent class  
+class ParentClass  
+{  
+//we cannot override the display() method  
+public static void display()  
+{  
+System.out.printf("display() method of the parent class.");  
+}  
+}  
+//child class  
+class ChildClass extends ParentClass  
+{  
+//the same method also exists in the ParentClass  
+//it does not override, actually it is method hiding  
+public static void display()  
+{  
+System.out.println("Overridden static method in Child Class in Java");  
+}  
+}  
+Output: display() method of the parent class.
+
+-  Runtime polymorphism can't be achieved by data members(instance variables). A method is overridden, not the data members, so runtime polymorphism can't be achieved by data members. 
+
+class Bike{  
+ int speedlimit=90;  
+}  
+class Honda3 extends Bike{  
+ int speedlimit=150;  
+  
+ public static void main(String args[]){  
+  Bike obj=new Honda3();  
+  System.out.println(obj.speedlimit); //90  
+}  
+
+
+- Try for Output
+class Animal{  
+void eat(){System.out.println("animal is eating...");}  
+}  
+class Dog extends Animal{  
+void eat(){System.out.println("dog is eating...");}  
+}  
+class BabyDog1 extends Dog{  
+public static void main(String args[]){  
+Animal a=new BabyDog1();  
+a.eat();  //o/p-> dog is eating...
+}}  
+
+Since, BabyDog is not overriding the eat() method, so eat() method of Dog class is invoked.
+
+
+
+
+---------------------------------------------------------------------------------------------
+1#B) Dynamic Binding 
+
+-Connecting a method call to the method body is known as binding.
+There are two types of binding
+Static Binding (also known as Early Binding) - Type of object is known at compiletime.
+Dynamic Binding (also known as Late Binding) - Type of object is known at runtime.
+
+-So If there is any private, final or static method in a class, there is static binding
+
+class ParentClass  
+{  
+//we cannot override the display() method  
+public static void display()  
+{  
+System.out.printf("display() method of the parent class.");  
+}  
+
+private  void display2()  
+{  
+System.out.printf("display() method of the parent class.");  
+}  
+}  
+//child class  
+class ChildClass extends ParentClass  
+{  
+//the same method also exists in the ParentClass  
+//it does not override, actually it is method hiding  
+public static void display()  
+{  
+System.out.println("Overridden static method in Child Class in Java");  
+}  
+
+private void display2()  
+{  
+System.out.printf("display2() method of the child class.");  
+}  
+}  
+
+class HelloWorld{
+
+    public static void main(String args[]) {
+        
+ParentClass pc = new ChildClass();
+        pc.display(); //display() method of the parent class
+        pc.display2(); //error: display2() has private access in ParentClass
+    }
+}
+------------------------------------------------------------------------------------------------------------
+
+1#C - FINAL:
+
+- The final keyword in java is used to restrict the user. The java final keyword can be used in many context. Final can be:
+final variable - non-static final variables can either be init during declaration or in constructor.While static final can only be init in static block.
+final method -  Its inherited but Cannot be overrided.
+final class - Cannot be inherited.
+
+
+- Constructors cannot be final
+
+- If you declare any function parameter as final, you cannot reassigned. You can make changes in that object but cannot reassign that parameter.
+
+- TRYOUT:
+
+class Bike11{
+int x=0;
+  void cube(final Bike11 b){
+   b.x = b.x+1;
+  }
+  public static void main(String args[]){
+    Bike11 b=new Bike11();
+    b.cube(b);
+System.out.println(b.x); // 1
+ }
+}
+
+1#D- INSTANCEOF:
+
+-The java instanceof operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
+
+-If we apply the instanceof operator with any variable that has null value, it returns false.
+-TRYOUT:
+class Dog2{  
+ public static void main(String args[]){  
+  Dog2 d=null;  
+  System.out.println(d instanceof Dog2);//false  
+ }  
+}  
+
+
+-Downcasting with java instanceof operator
+
+class Animal { }  
+  
+class Dog extends Animal {  
+  static void method(Animal a) {  
+    if(a instanceof Dog3){  
+       Dog3 d=(Dog3)a;//downcasting  
+       System.out.println("ok downcasting performed");  
+    }  
+  }  
+   
+  public static void main (String [] args) {  
+    Animal a=new Dog();  
+    Dog3.method(a);  //ok downcasting performed
+  }  
+    
+ }  
+
+- So Its majorly used in safe downcasting.
+Dog d=new Animal();//Compilation error  
+Dog d=(Dog)new Animal();  //Compiles successfully but ClassCastException is thrown at runtime  
+
+
+
+1#BONUS) COVARIANT TYPE:(Can be on Overriding only)
+
+-Before Java5, it was not possible to override any method by changing the return type. But now, since Java5, it is possible to override method by changing the return type if subclass overrides any method whose return type is Non-Primitive but it changes its return type to subclass type. Let's take a simple example:
+Here Both methods get() have different return type but it is method overriding. This is known as covariant return type.
+
+class A{    
+A get(){return this;}    
+}    
+    
+class B1 extends A{    
+@Override  
+B1 get(){return this;}    //Return Type based overriding
+void message(){System.out.println("welcome to covariant return type");}    
+    
+public static void main(String args[]){    
+new B1().get().message();    //welcome to covariant return type
+}    
+}    
+
+-  Covariant return type helps in preventing the run-time ClassCastExceptions on returns.
+
+-  Java doesn't allow the return type-based overloading, but JVM always allows return type-based overriding using Covariant Types.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1#E) COMPILE-TIME POLYMORPHISM - OVERLOADING
+
+- There are two ways to overload the method in java
+By changing number of arguments in method
+By changing the data type of args in method
+
+- In Java, Method Overloading is not possible by changing the return type of the method only or using any modifier like static or final or synchronized etc. 
+
+- Can we overload java main() method?
+Yes, by method overloading. You can have any number of main methods in a class by method overloading. But JVM calls main() method which receives string array as arguments only. 
+
+- Method Overloading with Type Promotion of method arguments:
+Byte can be promoted to short, int, long, float or double. The short datatype can be promoted to int, long, float or double. The char datatype can be promoted to int,long,float or double and so on
+
+- TRYOUT:
+
+class OverloadingCalculation1{  
+  void sum(int a,long b){System.out.println(a+b);}  
+  void sum(int a,int b,int c){System.out.println(a+b+c);}  
+  
+  public static void main(String args[]){  
+  OverloadingCalculation1 obj=new OverloadingCalculation1();  
+  obj.sum(20,20);//now second int literal will be promoted to long  - 40
+  obj.sum(20,20,20);  // 60
+  
+  }  
+}  
+
+- BUT IF there are matching type arguments in the method, type promotion is not performed. For ex:
+
+class OverloadingCalculation2{  
+  void sum(int a,int b){System.out.println("int arg method invoked");}  //o/p-> int arg method invoked
+  void sum(long a,long b){System.out.println("long arg method invoked");}  
+  
+  public static void main(String args[]){  
+  OverloadingCalculation2 obj=new OverloadingCalculation2();  
+  obj.sum(20,20);//now int arg sum() method gets invoked  
+  }  
+}  
+
+- AMBIGUITY CASE:
+class OverloadingCalculation3{  
+  void sum(int a,long b){System.out.println("a method invoked");}  
+  void sum(long a,int b){System.out.println("b method invoked");}  
+  
+  public static void main(String args[]){  
+  OverloadingCalculation3 obj=new OverloadingCalculation3();  
+  obj.sum(20,20);//now ambiguity  
+  }  
+}  
+
+- if parameters are null, then also ambiguity can occur. Null by default matches with String args in function. (DO MORE RESEARCH ON IT)
+
+======================================================================================================================================================================================
+
+#2) SUPER:
+
+- The super keyword in Java is a reference variable which is used to refer immediate parent class object.
+
+- Whenever you create the instance of subclass, an instance of parent class is created implicitly which is referred by super reference variable.
+
+- Usage of Java super Keyword
+super can be used to refer immediate parent class instance variable.
+super can be used to invoke immediate parent class method.
+super() can be used to invoke immediate parent class constructor.
+
+Example:
+
+class Animal{  
+String color="white";  
+void eat(){System.out.println("eating...");}  
+}  
+class Dog extends Animal{  
+String color="black";  
+
+void printColor(){  
+System.out.println(color);//color="black";  prints color of Dog class  
+System.out.println(super.color);//color="white"; prints color of Animal class  
+}  
+
+void eat(){System.out.println("eating bread...");}  
+
+void bark(){System.out.println("barking...");}  
+
+void work(){  
+super.eat();  //eating...
+bark();  //barking...
+}  
+
+}  
+
+class TestSuper2{  
+public static void main(String args[]){  
+Dog d=new Dog();  
+d.printColor();
+d.work();  
+}}  
+
+
+
+- super() and this() needs to be the first line in constructor. And So Java does not allow using both super() and this() in same constructor. 
+- Note: super() is added in each class constructor(parameterized too) automatically by compiler if there is no super() or this(). As we know well that default constructor is provided by compiler automatically if there is no constructor. But, it also adds super() as the first statement.
+
+
+
+Example:
+class Animal{  
+Animal(){System.out.println("animal is created");}  
+}  
+
+class Dog extends Animal{  
+Dog(){  System.out.println("dog is created");   }  -> actually via compiler : -> Dog(){  super(); System.out.println("dog is created");   } 
+Dog(int d)
+{ Sopln("PARAM dog is created"); } -> actually via compiler : -> Dog(){  super(); System.out.println("PARAM dog is created");   } //Has no-arg constructor was not present in Animal.class, there would be error
+}  
+
+class TestSuper4{  
+public static void main(String args[]){  
+Dog d=new Dog();  
+}}  
+
+op-> animal is created \n dog is created \n animal is created \n PARAM dog is created
+
+
+=============================================================================================================================================================================================
+
+#3) INSTANCE BLOCK:
+
+- Instance Initializer block is used to initialize the instance data member. It run each time when object of the class is created.
+class Bike7{  
+    int speed;  
+      
+    Bike7(){System.out.println("speed is "+speed);}  
+   
+    {speed=100;}  
+       
+    public static void main(String args[]){  
+    Bike7 b1=new Bike7();  // speed is 100
+    Bike7 b2=new Bike7();  // speed is 100
+    }      
+}  
+
+
+- The java compiler copies the instance initializer block in the constructor(in paramterized too) after the first statement super().
+
+class Bike8{  
+    int speed;  
+      
+    Bike8(){System.out.println("constructor is invoked");}  -> actually via compiler : -> Bike8(){super(); Sopln("instance initializer block invoked"); Sopln("constructor is invoked");} 
+   
+    {System.out.println("instance initializer block invoked");}  // removed and compiler copies the instance initializer block in the constructor after the first statement super().
+       
+    public static void main(String args[]){  
+    Bike8 b1=new Bike8();  // instance initializer block invoked \n constructor is invoked
+    Bike8 b2=new Bike8();  // instance initializer block invoked \n constructor is invoked
+    }      
+}
+
+
+- There are mainly three rules for the instance initializer block. They are as follows:
+The instance initializer block is executed when instance of the class is created.
+The instance initializer block is invoked after the parent class constructor is invoked (i.e. after super() constructor call).
+In case of multiple instance blocks in a class,the instance initializer block are copied in constructor in the order in which they appear.
+-Example : 
+class A{  
+A(){  
+System.out.println("parent class constructor invoked");  
+}  
+}  
+  
+class B3 extends A{  
+B3(){  
+System.out.println("child class constructor invoked");  
+}  
+  
+B3(int a){  
+System.out.println("child class constructor invoked "+a);  
+}  
+  
+{System.out.println("instance initializer block is invoked 1");}  
+{System.out.println("instance initializer block is invoked 2");}  
+  
+public static void main(String args[]){  
+B3 b1=new B3();   // parent class constructor invoked \n instance initializer block is invoked 1\n instance initializer block is invoked 2\n child class constructor invoked
+B3 b2=new B3(10);  // parent class constructor invoked \n instance initializer block is invoked 1\n instance initializer block is invoked 2\n child class constructor invoked 10
+}  
+}  
+
+
+
+============================================================================================================================================================================================
+
+#4) CONSTRUCTOR:
+
+- It is not necessary to write a constructor for a class. It is because java compiler creates a default constructor if your class doesn't have any.
+
+- We can have private, protected, public or default (ACCESS MODIFIERS )constructor in Java.
+
+- A Java constructor cannot be abstract, static, final, and synchronized
+
+- constructor return any value? Yes, it is the current class instance (You cannot use return type yet it returns a value)
+
+Can constructor perform other tasks instead of initialization?
+Yes, like object creation, starting a thread, calling a method, etc. You can perform any operation in the constructor as you perform in the method.
+
+
+============================================================================================================================================================================================
+
+
+#5) STATIC:
+
+- The static keyword in Java is used for memory management mainly. The static member belongs to the class than an instance of the class.
+
+-The static can be:
+	Variable (also known as a class variable) - To refer to the common property of all objects.Gets memory only once in the class area at the time of class loading.
+	Method (also known as a class method) - Can access static data member/method of class and can change the value of it.
+	Block - Is used to initialize the static data member. It is executed before the main method at the time of classloading.
+
+class A2{  
+  static{System.out.println("static block is invoked");}  //Invoked 1st
+  public static void main(String args[]){  
+   System.out.println("Hello main");   //Invoked 2nd
+  }  
+}  
+
+
+- There are two main restrictions for the static method. They are:
+	a) The static method can not use non static data member or call non-static method directly. - Impotant and Obvious
+	b) this and super cannot be used in static context. - Impotant and Obvious
+
+
+-  Can we execute a program without psvm() method? - NO.
+
+=============================================================================================================================================================================================
+
+#6) THIS:
+
+https://www.javatpoint.com/this-keyword
+
+
+=============================================================================================================================================================================================
+
+#7) ASSOCIATION VS AGGREGATION VS COMPOSITION :
+
+- Association is HAS-A relationship b/e Entities, unlike inheritance which is IS-A relationship. Its of 2 types:  AGGREGATION AND COMPOSITION
+- AGGREGATION is when both entities can survive individually  ie User and Vehicle
+- COMPOSITION between two entities, the composed object cannot exist without the other entity. ie Vehicles and Tyres,Engines
+
+=============================================================================================================================================================================================
+
+#8) ABSTRACTION :
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8#A) ABSTRACT-CLASS:
+
+- An abstract class must be declared with an abstract keyword.
+	It can have abstract and non-abstract methods.
+	It cannot be instantiated.
+	It can have constructors and static methods also.(Imp)
+	It can have final methods which will force the subclass not to change the body of the method.(Imp)
+	It can even have psvm()
+
+- An abstract class can have a data member, abstract method, method body (non-abstract method), constructor, and even main() method. 
+
+- TRYOUT:
+abstract class Bike{  
+   Bike(){System.out.println("bike is created");}  //It can have constructors
+   abstract void run();  
+   void changeGear(){System.out.println("gear changed");}  
+ }  
+//Creating a Child class which inherits Abstract class  
+ class Honda extends Bike{  
+ void run(){System.out.println("running safely..");}  
+ }  
+//Creating a Test class which calls abstract and non-abstract methods  
+ class TestAbstraction2{  
+ public static void main(String args[]){  
+  Bike obj = new Honda();  
+  obj.run();  
+  obj.changeGear();  
+ }  
+}
+
+o/p->bike is created
+       running safely..
+       gear changed
+
+- TRYOUT:
+public abstract class TestAbstract {
+	public static void main(String[] args){
+		System.out.println("Inside abstract main");
+	}
+}
+ 
+O/P-> Inside abstract main
+
+
+- If you are extending an abstract class that has an abstract method, you must either provide the implementation of the method or make this class abstract.
+
+
+- The abstract class can also be used to provide some implementation of the interface. In such case, the end user may not be forced to override all the methods of the interface.
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8#B) INTERFACE:
+
+- Since Java 8, we can have default and static methods in an interface.
+- By interface, we can support the functionality of multiple inheritance. It can be used to achieve loose coupling.
+- The Java compiler adds public and abstract keywords before the interface method. 
+- Moreover, it adds public, static and final keywords before data members.
+
+- Multiple inheritance is not supported through class in java, but it is possible by an interface, why?
+ Multiple inheritance is not supported in the case of class because of ambiguity. However, it is supported in case of an interface because there is no ambiguity. It is because its implementation is provided by the implementation class. For example:
+
+interface Printable{  
+void print();  
+}  
+interface Showable{  
+void print();  
+}  
+  
+class TestInterface3 implements Printable, Showable{  
+public void print(){System.out.println("Hello");}  
+public static void main(String args[]){  
+TestInterface3 obj = new TestInterface3();  
+obj.print();  
+ }  
+}
+
+Printable and Showable interface have same methods but its implementation is provided by class TestTnterface1, so there is no ambiguity.
+
+
+
+- Since Java 8, we can have method body in interface. But we need to make it default method. Let's see an example:
+
+interface Drawable{  
+void draw();  
+default void msg(){System.out.println("default method");}  
+}  
+class Rectangle implements Drawable{  
+public void draw(){System.out.println("drawing rectangle");}  
+}  
+class TestInterfaceDefault{  
+public static void main(String args[]){  
+Drawable d=new Rectangle();  
+d.draw();  
+d.msg();  
+}}  
+
+
+
+- Since Java 8, we can have static method in interface. Let's see an example:
+
+interface Drawable{  
+void draw();  
+static int cube(int x){return x*x*x;}  
+}  
+class Rectangle implements Drawable{  
+public void draw(){System.out.println("drawing rectangle");}  
+}  
+  
+class TestInterfaceStatic{  
+public static void main(String args[]){  
+Drawable d=new Rectangle();  
+d.draw();  
+System.out.println(Drawable.cube(3));  
+}}  
+
+
+- What is marker or tagged interface?
+An interface which has no member is known as a marker or tagged interface, for example, Serializable, Cloneable, Remote, etc. They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
+
+
+
+
+
+
+=============================================================================================================================================================================================
+
+
+
+  
+
