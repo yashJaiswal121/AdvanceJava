@@ -1,0 +1,5 @@
+org\example\JMXAgent.class
+org\example\ConfigurationMBean.class
+org\example\App.class
+org\example\CustomJMXClientConnector.class
+org\example\Configuration.class

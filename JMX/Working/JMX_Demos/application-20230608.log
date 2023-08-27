@@ -1,0 +1,44 @@
+
+2023-06-08 15:35:00.149 [main] DEBUG org.example.App - We've just greeted the user!
+2023-06-08 15:35:00.159 [main] INFO  org.example.App - We've just greeted the user!
+2023-06-08 15:35:00.160 [main] WARN  org.example.App - We've just greeted the user!
+2023-06-08 15:35:00.160 [main] ERROR org.example.App - We've just greeted the user!
+2023-06-08 15:35:00.160 [main] FATAL org.example.App - We've just greeted the user!
+2023-06-08 15:35:38.649 [main] ERROR org.example.App - We've just greeted the user!
+2023-06-08 15:35:38.654 [main] FATAL org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.530 [main] ERROR org.example.App - Started Execution with Logger level set via log42j.xml as : DEBUG
+2023-06-08 17:15:24.535 [main] DEBUG org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.536 [main] INFO  org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.536 [main] WARN  org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.536 [main] ERROR org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.536 [main] FATAL org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.541 [main] ERROR org.example.App - MBean  Execution with Logger level set via log42j.xml as : DEBUG
+2023-06-08 17:15:24.542 [main] DEBUG org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.542 [main] INFO  org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.542 [main] WARN  org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.542 [main] ERROR org.example.App - We've just greeted the user!
+2023-06-08 17:15:24.542 [main] FATAL org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.785 [main] ERROR org.example.App - Started Execution with Logger level set via log42j.xml as : DEBUG
+2023-06-08 17:22:57.791 [main] DEBUG org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.791 [main] INFO  org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.791 [main] WARN  org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.792 [main] ERROR org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.792 [main] FATAL org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.796 [main] ERROR org.example.App - MBean  Execution with Logger level set via log42j.xml as : DEBUG
+2023-06-08 17:22:57.796 [main] DEBUG org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.796 [main] INFO  org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.796 [main] WARN  org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.796 [main] ERROR org.example.App - We've just greeted the user!
+2023-06-08 17:22:57.796 [main] FATAL org.example.App - We've just greeted the user!
+2023-06-08 17:29:03.990 [main] ERROR org.example.App - Started Execution with Logger level set via log42j.xml as : DEBUG
+2023-06-08 17:29:03.994 [main] DEBUG org.example.App - We've just greeted the user!
+2023-06-08 17:29:03.995 [main] INFO  org.example.App - We've just greeted the user!
+2023-06-08 17:29:03.995 [main] WARN  org.example.App - We've just greeted the user!
+2023-06-08 17:29:03.995 [main] ERROR org.example.App - We've just greeted the user!
+2023-06-08 17:29:03.995 [main] FATAL org.example.App - We've just greeted the user!
+2023-06-08 17:36:48.986 [main] ERROR org.example.App - Started Execution with Logger level set via log42j.xml as : DEBUG
+2023-06-08 17:36:48.991 [main] DEBUG org.example.App - We've just greeted the user!
+2023-06-08 17:36:48.991 [main] INFO  org.example.App - We've just greeted the user!
+2023-06-08 17:36:48.992 [main] WARN  org.example.App - We've just greeted the user!
+2023-06-08 17:36:48.992 [main] ERROR org.example.App - We've just greeted the user!
+2023-06-08 17:36:48.992 [main] FATAL org.example.App - We've just greeted the user!
