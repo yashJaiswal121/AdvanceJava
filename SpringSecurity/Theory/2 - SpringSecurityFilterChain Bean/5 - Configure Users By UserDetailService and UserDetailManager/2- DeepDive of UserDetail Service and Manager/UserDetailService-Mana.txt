@@ -1,0 +1,9 @@
+# UserDetailService(Interface For Read Operation of User) and UserDetailManager(Interface for Create/Update/Del Operation on User). Their implementations like InMemoryUserDetailManager,JdbcUserDetailManager,LdapUserDetailManager are used to deal with Storage system like File,DB etc to get the user-info.
+
+# UserDetailService and UserDetailManager have functions declared as in Pic. and their Impl are InMemoryUserDetailManager,JdbcUserDetailManager,LdapUserDetailManager as per storage system.
+
+# But if u want to load and create,update user as per your custom logic, you can create your own AuthenticationProvider instead of using DaoAuthenticationProvider.java
+We will implement this later on.
+
+
+# To have glimse of DeepDive of Code of Various UserDetailsManager(InMemoryUserDetailManager,JdbcUserDetailManager,LdapUserDetailManager) see video-28 of Udemy Course

@@ -1,0 +1,15 @@
+# The AuthenticationProvider has authenticate() method signature as:
+Authentication authenticate(Authentication authentication);
+
+Here Authentication Object Passed in Param has only Username/Passwd/OTP etc INPUT from UI user. But the  Authentication Object returned from it has info if authentication was sucessful and other etc.
+
+
+# The AuthenticationProvider has support() method signature as:
+boolean supports(Authentication auth);
+ It tells if the this AuthenticationProvider Implementation is appropiate for given Authentication object(auth here) ie if param Authentication object(auth here) has username/passwd/OTP etc what is expected by this  AuthenticationProvider Implementation. This can be checked by checking type of Authentication object.
+
+Since the application can have multiple AuthenticationProvider Implementations, this support() is used to identify which of these implementation to use as per INPUT from UI user.
+And this support() is used in ProviderManager.java/AuthenticationManager
+
+#SEE DaoAuthenticationProvider.support(), which checks for Type of Authentication Object i.e works/return true for UsernamePasswordAuthenticationToken Object.
+#SIMILARLY SEE TestingAuthenticationProvider.support(), which also checks for Type of Authentication Object i.e works/return true for TestingAuthenticationToken Object.

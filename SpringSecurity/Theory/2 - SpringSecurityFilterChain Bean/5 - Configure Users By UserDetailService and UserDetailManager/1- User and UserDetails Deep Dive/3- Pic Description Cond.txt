@@ -1,0 +1,7 @@
+
+# The Authentication Object(UsernamePasswordAuthenticationToken) and the UserDetail Object(User) , both store some common user info like username,password etc.
+# UserDetail Object(User) have some extra details like isAccntExpired etc AND Authentication Object has extra info like isAuthenticated(which covers all conclusions of isAccntExpired etc variables in UserDeatil Object)
+
+# The AuthenticationManager(ProviderManager) and Components/Filters before it in flow uses Authentication Object and not UserDetail Object in their code. So the AuthenicationProvider(DaoAuthenticationProvider.java) converts and returns the UserDetails Object to Authentication Object.
+
+# Authentication Interface( whose Impl is UsernamePasswordAuthenticationToken) extends Principal interface of Java
